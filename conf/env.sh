@@ -1,11 +1,11 @@
 # global settings
 
-master=/YOUR/MASTER
+master=`cat /root/spark-ec2/masters`
 #A list of machines where the spark cluster is running
-MC_LIST=/YOUR/SLAVES
+MC_LIST=`cat /root/spark-ec2/slaves`
 
 
-[ -z "$HADOOP_HOME" ] &&     export HADOOP_HOME=/YOUR/HADOOP
+[ -z "$HADOOP_HOME" ] &&     export HADOOP_HOME=/root/ephemeral-hdfs
 # base dir for DataSet
 HDFS_URL="hdfs://${master}:9000"
 SPARK_HADOOP_FS_LOCAL_BLOCK_SIZE=536870912
@@ -14,10 +14,10 @@ SPARK_HADOOP_FS_LOCAL_BLOCK_SIZE=536870912
 DATA_HDFS="hdfs://${master}:9000/SparkBench"
 
 #Local dataset optional
-DATASET_DIR=/home/`whoami`/SparkBench/dataset
+#DATASET_DIR=/home/`whoami`/SparkBench/dataset
 
 SPARK_VERSION=1.6.3  #1.5.1
-[ -z "$SPARK_HOME" ] &&     export SPARK_HOME=/YOUR/SPARK
+[ -z "$SPARK_HOME" ] &&     export SPARK_HOME=/root/spark
 
 #SPARK_MASTER=local
 #SPARK_MASTER=local[K]
@@ -50,14 +50,14 @@ SPARK_STORAGE_MEMORYFRACTION=0.5
 # - SPARK_EXECUTOR_INSTANCES, --num-executors
 # - SPARK_EXECUTOR_CORES, --executor-cores
 # - SPARK_DRIVER_MEMORY, --driver-memory
-export EXECUTOR_GLOBAL_MEM=6g
-export executor_cores=6
+#export EXECUTOR_GLOBAL_MEM=6g
+#export executor_cores=6
 
 # Storage levels, see http://spark.apache.org/docs/latest/api/java/org/apache/spark/api/java/StorageLevels.html
 # - STORAGE_LEVEL, set MEMORY_AND_DISK, MEMORY_AND_DISK_SER, MEMORY_ONLY, MEMORY_ONLY_SER, or DISK_ONLY
 STORAGE_LEVEL=MEMORY_AND_DISK
 
 # for data generation
-NUM_OF_PARTITIONS=10
+NUM_OF_PARTITIONS=3
 # for running
 NUM_TRIALS=1
