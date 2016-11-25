@@ -35,7 +35,7 @@ import org.apache.spark.graphx.impl.{EdgePartitionBuilder, GraphImpl}
 import scala.collection.parallel._
 
 object pagerankApp extends Logging {
-  var hdfs = "hdfs://ec2-54-172-250-160.compute-1.amazonaws.com:9000/SparkBench/"
+  var hdfs = "hdfs://ec2-52-87-173-212.compute-1.amazonaws.com:9000/SparkBench/"
 
   def main(args: Array[String]) {
     if (args.length < 0) {
