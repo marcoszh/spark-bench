@@ -35,7 +35,8 @@ import org.apache.spark.graphx.impl.{EdgePartitionBuilder, GraphImpl}
 import scala.collection.parallel._
 
 object pagerankApp extends Logging {
-  var hdfs = "hdfs://ec2-52-87-173-212.compute-1.amazonaws.com:9000/SparkBench/"
+  var masterurl = "ec2-54-164-207-99.compute-1.amazonaws.com"
+  var hdfs = "hdfs://" + masterurl + ":9000/SparkBench/"
 
   def main(args: Array[String]) {
     if (args.length < 0) {
@@ -46,7 +47,7 @@ object pagerankApp extends Logging {
     Logger.getLogger("org.eclipse.jetty.server").setLevel(Level.OFF)
 	
     val conf = new SparkConf
-    conf.setAppName("Spark PageRank Application").set("spark.eventLog.enabled","true").set("spark.eventLog.dir","/mnt/logs").set("spark.scheduler.mode","Fair")
+    conf.setAppName("Spark PageRank Application").set("spark.eventLog.enabled","true").set("spark.eventLog.dir","hdfs://" + masterurl + ":9000/logs").set("spark.scheduler.mode","Fair")
     val sc = new SparkContext(conf)
 	//conf.registerKryoClasses(Array(classOf[pagerankApp] ))
     val start = System.currentTimeMillis
@@ -101,7 +102,7 @@ object pagerankApp extends Logging {
     val graph = GraphLoader.edgeListFile(sc, input, true, minEdge, sl, sl)
 
     val staticRanks = graph.staticPageRank(maxIterations, resetProb).vertices
-    staticRanks.saveAsTextFile(output);
+    //staticRanks.saveAsTextFile(output);
   }
 
   def connectedComponentApp(sc: SparkContext): Unit = {
@@ -110,7 +111,7 @@ object pagerankApp extends Logging {
     val minEdge= 20
     val graph = GraphLoader.edgeListFile(sc, input, true, minEdge, StorageLevel.MEMORY_AND_DISK, StorageLevel.MEMORY_AND_DISK)
     val res = graph.connectedComponents().vertices
-    res.saveAsTextFile(output);
+    //res.saveAsTextFile(output);
   }
 
   def pregelOperation(sc: SparkContext): Unit = {
