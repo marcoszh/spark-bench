@@ -35,7 +35,7 @@ import org.apache.spark.graphx.impl.{EdgePartitionBuilder, GraphImpl}
 import scala.collection.parallel._
 
 object pagerankApp extends Logging {
-  var masterurl = "ec2-54-164-207-99.compute-1.amazonaws.com"
+  var masterurl = "ec2-54-158-196-174.compute-1.amazonaws.com"
   var hdfs = "hdfs://" + masterurl + ":9000/SparkBench/"
 
   def main(args: Array[String]) {
@@ -69,15 +69,19 @@ object pagerankApp extends Logging {
     println("######### Start execution - ForegroundApp")
 
     if (i % 4 == 0) {
+      println("######### Start execution - PageRank")
       pagerank_usingGenedData(sc)
     }
     if (i % 4 == 1) {
+      println("######### Start execution - ConnectedComponent")
       connectedComponentApp(sc)
     }
     if (i % 4 == 2) {
+      println("######### Start execution - PregelOperation")
       pregelOperation(sc)
     }
     if (i % 4 == 3) {
+      println("######### Start execution - SVDPlusPlus")
       svdPlusPlus(sc)
     }
 
