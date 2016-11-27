@@ -139,25 +139,10 @@
 
     <modules>   
         <module>common</module>
-        <module>Terasort</module>
-        <module>PCA</module>
-        <module>LogisticRegression</module>
-        <module>KMeans</module> 
-        <module>LinearRegression</module>
-        <module>SVM</module>
-        <module>DecisionTree</module>
-        <module>MatrixFactorization</module>
-
         <module>PageRank</module>
-        <module>TriangleCount</module>
-        <module>StronglyConnectedComponent</module>
-        <module>ShortestPaths</module>
         <module>SVDPlusPlus</module>
-        <module>LabelPropagation</module> 
         <module>ConnectedComponent</module>
         <module>PregelOperation</module>
-        <module>SQL</module>
-        <module>Streaming</module>		   
 
 
     </modules>
