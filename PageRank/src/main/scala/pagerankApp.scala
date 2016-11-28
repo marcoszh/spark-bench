@@ -35,7 +35,7 @@ import org.apache.spark.graphx.impl.{EdgePartitionBuilder, GraphImpl}
 import scala.collection.parallel._
 
 object pagerankApp extends Logging {
-  var masterurl = "ec2-52-90-48-216.compute-1.amazonaws.com"
+  var masterurl = "ec2-52-90-242-247.compute-1.amazonaws.com"
   var hdfs = "hdfs://" + masterurl + ":9000/SparkBench/"
 
   def main(args: Array[String]) {
@@ -147,7 +147,7 @@ object pagerankApp extends Logging {
     val input = hdfs + "SVDPlusPlus/Input"
     val output = hdfs + "SVDPlusPlus/Output"
     val minEdge= 20
-    val numIter = 4
+    val numIter = 3
     val rank=50
     val minVal=0.0
     val maxVal=5.0
