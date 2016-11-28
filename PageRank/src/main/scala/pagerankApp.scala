@@ -47,7 +47,7 @@ object pagerankApp extends Logging {
     Logger.getLogger("org.eclipse.jetty.server").setLevel(Level.OFF)
 	
     val conf = new SparkConf
-    conf.setAppName("Spark PageRank Application").set("spark.eventLog.enabled","true").set("spark.eventLog.dir","hdfs://" + masterurl + ":9000/logs").set("spark.scheduler.mode","Fair")
+    conf.setAppName("Spark PageRank Application").set("spark.eventLog.enabled","true").set("spark.eventLog.dir","hdfs://" + masterurl + ":9000/logs").set("spark.scheduler.mode","Fair").set("spark.memory.useLegacyMode", "true").set("spark.storage.memoryFraction", "0.3")
     val sc = new SparkContext(conf)
 	//conf.registerKryoClasses(Array(classOf[pagerankApp] ))
     val start = System.currentTimeMillis
