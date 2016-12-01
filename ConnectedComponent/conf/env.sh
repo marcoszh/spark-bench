@@ -1,6 +1,6 @@
 # application parameters
 #numV=15000
-numV=30000
+numV=40000
 NUM_OF_PARTITIONS=20
 mu=4.0
 sigma=1.3
