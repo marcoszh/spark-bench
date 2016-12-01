@@ -1,5 +1,6 @@
 # for preparation 
-numV=70000
+#numV=70000
+numV=140000
 NUM_OF_PARTITIONS=20
 mu=4.0
 sigma=1.3
