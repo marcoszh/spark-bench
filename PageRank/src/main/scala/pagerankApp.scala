@@ -52,7 +52,8 @@ object pagerankApp extends Logging {
 	//conf.registerKryoClasses(Array(classOf[pagerankApp] ))
     val start = System.currentTimeMillis
 
-    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)
+    //var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
+    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8)
     pc.tasksupport = new ForkJoinTaskSupport(new scala.concurrent.forkjoin.ForkJoinPool(8))
     pc map {i => func(sc, i, start)}
 
@@ -68,19 +69,19 @@ object pagerankApp extends Logging {
     while (System.currentTimeMillis < start0 + 1000 * i){}
     println("######### Start execution - ForegroundApp")
 
-    if (i % 4 == 0) {
+    if (i % 3 == 0) {
       println("######### Start execution - PageRank")
       pagerank_usingGenedData(sc)
     }
-    if (i % 4 == 1) {
+    if (i % 3 == 1) {
       println("######### Start execution - ConnectedComponent")
       connectedComponentApp(sc)
     }
-    if (i % 4 == 2) {
+    if (i % 3 == 2) {
       println("######### Start execution - PregelOperation")
       pregelOperation(sc)
     }
-    if (i % 4 == 3) {
+    if (i % 3 == 3) {
       println("######### Start execution - SVDPlusPlus")
       //svdPlusPlus(sc)
       pagerank_usingGenedData(sc)
@@ -93,7 +94,7 @@ object pagerankApp extends Logging {
     val input = hdfs + "PageRank/Input"
     val output = hdfs + "PageRank/Output"
     val minEdge = 20
-    val maxIterations = 36
+    val maxIterations = 24
     val tolerance = 0.001
     val resetProb = 0.15
     val storageLevel=StorageLevel.MEMORY_AND_DISK
