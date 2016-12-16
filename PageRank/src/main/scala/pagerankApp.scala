@@ -82,7 +82,7 @@ object pagerankApp extends Logging {
     }
     if (i % 4 == 3) {
       println("######### Start execution - SVDPlusPlus")
-      svdPlusPlus(sc)
+      //svdPlusPlus(sc)
     }
 
   }
