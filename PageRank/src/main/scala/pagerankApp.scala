@@ -92,7 +92,7 @@ object pagerankApp extends Logging {
     val input = hdfs + "PageRank/Input"
     val output = hdfs + "PageRank/Output"
     val minEdge = 20
-    val maxIterations = 12
+    val maxIterations = 36
     val tolerance = 0.001
     val resetProb = 0.15
     val storageLevel=StorageLevel.MEMORY_AND_DISK
