@@ -65,7 +65,7 @@ object pagerankApp extends Logging {
     sc.setLocalProperty("job.threadId", i.toString)
     sc.setLocalProperty("job.priority","1")
 
-    while (System.currentTimeMillis < start0 + 3000 * i){}
+    while (System.currentTimeMillis < start0 + 1000 * i){}
     println("######### Start execution - ForegroundApp")
 
     if (i % 4 == 0) {
@@ -83,6 +83,7 @@ object pagerankApp extends Logging {
     if (i % 4 == 3) {
       println("######### Start execution - SVDPlusPlus")
       //svdPlusPlus(sc)
+      pagerank_usingGenedData(sc)
     }
 
   }
