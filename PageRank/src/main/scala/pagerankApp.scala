@@ -52,8 +52,8 @@ object pagerankApp extends Logging {
 	//conf.registerKryoClasses(Array(classOf[pagerankApp] ))
     val start = System.currentTimeMillis
 
-    //var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
-    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8)
+    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
+    //var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8)
     pc.tasksupport = new ForkJoinTaskSupport(new scala.concurrent.forkjoin.ForkJoinPool(8))
     pc map {i => func(sc, i, start)}
 
@@ -66,7 +66,7 @@ object pagerankApp extends Logging {
     sc.setLocalProperty("job.threadId", i.toString)
     sc.setLocalProperty("job.priority","1")
 
-    while (System.currentTimeMillis < start0 + 1000 * i){}
+    while (System.currentTimeMillis < start0 + 500 * i){}
     println("######### Start execution - ForegroundApp")
 
     if (i % 3 == 0) {
