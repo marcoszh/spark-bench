@@ -47,12 +47,12 @@ object pagerankApp extends Logging {
     Logger.getLogger("org.eclipse.jetty.server").setLevel(Level.OFF)
 	
     val conf = new SparkConf
-    conf.setAppName("Spark PageRank Application").set("spark.eventLog.enabled","true").set("spark.eventLog.dir","hdfs://" + masterurl + ":9000/logs").set("spark.scheduler.mode","Fair").set("spark.memory.useLegacyMode", "true").set("spark.storage.memoryFraction", "0.07")
+    conf.setAppName("Spark PageRank Application").set("spark.eventLog.enabled","true").set("spark.eventLog.dir","hdfs://" + masterurl + ":9000/logs").set("spark.scheduler.mode","Fair").set("spark.memory.useLegacyMode", "true").set("spark.storage.memoryFraction", "0.05")
     val sc = new SparkContext(conf)
 	//conf.registerKryoClasses(Array(classOf[pagerankApp] ))
     val start = System.currentTimeMillis
 
-    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7)
+    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)
     pc.tasksupport = new ForkJoinTaskSupport(new scala.concurrent.forkjoin.ForkJoinPool(8))
     pc map {i => func(sc, i, start)}
 
