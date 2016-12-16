@@ -53,7 +53,7 @@ object pagerankApp extends Logging {
     val start = System.currentTimeMillis
 
     //var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
-    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8)
+    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7)
     pc.tasksupport = new ForkJoinTaskSupport(new scala.concurrent.forkjoin.ForkJoinPool(8))
     pc map {i => func(sc, i, start)}
 
@@ -70,16 +70,16 @@ object pagerankApp extends Logging {
     println("######### Start execution - ForegroundApp")
 
     if (i % 3 == 0) {
-      println("######### Start execution - PageRank")
-      pagerank_usingGenedData(sc)
+      println("######### Start execution - PregelOperation")
+      pregelOperation(sc)
     }
     if (i % 3 == 1) {
       println("######### Start execution - ConnectedComponent")
       connectedComponentApp(sc)
     }
     if (i % 3 == 2) {
-      println("######### Start execution - PregelOperation")
-      pregelOperation(sc)
+      println("######### Start execution - PageRank")
+      pagerank_usingGenedData(sc)
     }
     if (i % 3 == 3) {
       println("######### Start execution - SVDPlusPlus")
