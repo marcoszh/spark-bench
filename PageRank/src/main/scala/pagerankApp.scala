@@ -71,11 +71,11 @@ object pagerankApp extends Logging {
     while (System.currentTimeMillis < start0 + 500 * i){}
     println("######### Start execution - ForegroundApp")
 
-    if (i % 3 == 0) {
+    if (i % 2 == 0) {
       println("######### Start execution - PregelOperation")
       pregelOperation(sc)
     }
-    if (i % 3 == 1) {
+    if (i % 2 == 1) {
       println("######### Start execution - ConnectedComponent")
       connectedComponentApp(sc)
     }
