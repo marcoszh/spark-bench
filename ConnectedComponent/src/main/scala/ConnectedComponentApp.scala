@@ -44,7 +44,7 @@ Logger.getLogger("org.eclipse.jetty.server").setLevel(Level.OFF);
     }
     val conf = new SparkConf
     conf.setAppName("Spark ConnectedComponent Application").set("spark.scheduler.mode","Fair")
-      .set("spark.memory.useLegacyMode", "true").set("spark.storage.memoryFraction", "0.005")
+      .set("spark.memory.useLegacyMode", "true").set("spark.storage.memoryFraction", "0.0005")
     val sc = new SparkContext(conf)
     
 	val input = args(0) 
