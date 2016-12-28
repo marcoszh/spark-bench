@@ -79,15 +79,6 @@ object pagerankApp extends Logging {
       println("######### Start execution - ConnectedComponent")
       connectedComponentApp(sc)
     }
-    if (i % 3 == 2) {
-      println("######### Start execution - PageRank")
-      pagerank_usingGenedData(sc)
-    }
-    if (i % 3 == 3) {
-      println("######### Start execution - SVDPlusPlus")
-      //svdPlusPlus(sc)
-      pagerank_usingGenedData(sc)
-    }
 
   }
 
