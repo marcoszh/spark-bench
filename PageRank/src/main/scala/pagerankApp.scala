@@ -35,7 +35,7 @@ import org.apache.spark.graphx.impl.{EdgePartitionBuilder, GraphImpl}
 import scala.collection.parallel._
 
 object pagerankApp extends Logging {
-  var masterurl = "ec2-52-207-241-50.compute-1.amazonaws.com"
+  var masterurl = "ec2-54-87-202-106.compute-1.amazonaws.com"
   var hdfs = "hdfs://" + masterurl + ":9000/SparkBench/"
 
   def main(args: Array[String]) {
@@ -49,7 +49,7 @@ object pagerankApp extends Logging {
     val conf = new SparkConf
     conf.setAppName("Spark PageRank Application").set("spark.eventLog.enabled","true")
       .set("spark.eventLog.dir","hdfs://" + masterurl + ":9000/logs").set("spark.scheduler.mode","Fair")
-      .set("spark.memory.useLegacyMode", "true").set("spark.storage.memoryFraction", "0.01")
+      .set("spark.memory.useLegacyMode", "true").set("spark.storage.memoryFraction", "0.015")
     val sc = new SparkContext(conf)
 	//conf.registerKryoClasses(Array(classOf[pagerankApp] ))
     val start = System.currentTimeMillis
