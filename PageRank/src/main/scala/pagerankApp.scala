@@ -35,7 +35,7 @@ import org.apache.spark.graphx.impl.{EdgePartitionBuilder, GraphImpl}
 import scala.collection.parallel._
 
 object pagerankApp extends Logging {
-  var masterurl = "ec2-54-87-202-106.compute-1.amazonaws.com"
+  var masterurl = "ec2-54-88-116-80.compute-1.amazonaws.com"
   var hdfs = "hdfs://" + masterurl + ":9000/SparkBench/"
 
   def main(args: Array[String]) {
@@ -49,13 +49,13 @@ object pagerankApp extends Logging {
     val conf = new SparkConf
     conf.setAppName("Spark PageRank Application").set("spark.eventLog.enabled","true")
       .set("spark.eventLog.dir","hdfs://" + masterurl + ":9000/logs").set("spark.scheduler.mode","Fair")
-      .set("spark.memory.useLegacyMode", "true").set("spark.storage.memoryFraction", "0.015")
+      .set("spark.memory.useLegacyMode", "true").set("spark.storage.memoryFraction", "0.01")
     val sc = new SparkContext(conf)
 	//conf.registerKryoClasses(Array(classOf[pagerankApp] ))
     val start = System.currentTimeMillis
 
     //var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
-    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7)
+    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8)
     pc.tasksupport = new ForkJoinTaskSupport(new scala.concurrent.forkjoin.ForkJoinPool(8))
     pc map {i => func(sc, i, start)}
 
@@ -71,13 +71,17 @@ object pagerankApp extends Logging {
     while (System.currentTimeMillis < start0 + 500 * i){}
     println("######### Start execution - ForegroundApp")
 
-    if (i % 2 == 0) {
+    if (i % 3 == 0) {
       println("######### Start execution - PregelOperation")
       pregelOperation(sc)
     }
-    if (i % 2 == 1) {
+    if (i % 3 == 1) {
       println("######### Start execution - ConnectedComponent")
       connectedComponentApp(sc)
+    }
+    if (i % 3 == 2) {
+      println("######### Start execution - PageRank")
+      pagerank_usingGenedData(sc)
     }
 
   }
