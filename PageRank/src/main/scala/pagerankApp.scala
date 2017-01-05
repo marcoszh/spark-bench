@@ -35,7 +35,7 @@ import org.apache.spark.graphx.impl.{EdgePartitionBuilder, GraphImpl}
 import scala.collection.parallel._
 
 object pagerankApp extends Logging {
-  var masterurl = "ec2-52-90-132-147.compute-1.amazonaws.com"
+  var masterurl = "ec2-54-225-46-168.compute-1.amazonaws.com"
   var hdfs = "hdfs://" + masterurl + ":9000/SparkBench/"
 
   def main(args: Array[String]) {
@@ -55,7 +55,7 @@ object pagerankApp extends Logging {
     val start = System.currentTimeMillis
 
     //var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
-    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7)
+    var pc = mutable.ParArray(0, 1, 2, 3, 4, 5, 6, 7, 8 ,9 ,10)
     pc.tasksupport = new ForkJoinTaskSupport(new scala.concurrent.forkjoin.ForkJoinPool(8))
     pc map {i => func(sc, i, start)}
 
@@ -80,8 +80,8 @@ object pagerankApp extends Logging {
       connectedComponentApp(sc)
     }
     if (i == 2) {
-      println("######### Start execution - PageRank")
-      pagerank_usingGenedData(sc)
+//      println("######### Start execution - PageRank")
+//      pagerank_usingGenedData(sc)
     }
 
   }
